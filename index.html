@@ -23,11 +23,34 @@
         </form>
     </section>
 
+    <section id="additional-filters">
+        <h3>Additional Filters</h3>
+        <label for="age">Age:</label>
+        <select id="age">
+            <option value="child">0-12</option>
+            <option value="teen">13-19</option>
+            <option value="adult">20-59</option>
+            <option value="senior">60+</option>
+        </select><br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender">
+            <option value="any">Any</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </section>
+
     <section id="diagnosis-results">
         <h2>Possible Diagnoses</h2>
         <ul id="diagnosis-list"></ul>
     </section>
 
+    <footer>
+        <p><strong>Disclaimer:</strong> This tool is for informational purposes only and should not be used as a substitute for professional medical advice. Always consult a healthcare provider for any health concerns.</p>
+    </footer>
+
     <script src="app.js"></script>
 </body>
 </html>
+
