@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Diagnosis Filter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Medical Diagnosis Helper</h1>
+        <p>Select your symptoms to get possible diagnoses:</p>
+    </header>
+    
+    <section id="symptom-selection">
+        <form id="symptoms-form">
+            <label><input type="checkbox" value="fever" class="symptom-checkbox"> Fever</label><br>
+            <label><input type="checkbox" value="cough" class="symptom-checkbox"> Cough</label><br>
+            <label><input type="checkbox" value="headache" class="symptom-checkbox"> Headache</label><br>
+            <label><input type="checkbox" value="nausea" class="symptom-checkbox"> Nausea</label><br>
+            <label><input type="checkbox" value="fatigue" class="symptom-checkbox"> Fatigue</label><br>
+            <button type="button" onclick="filterDiagnosis()">Find Diagnosis</button>
+        </form>
+    </section>
+
+    <section id="diagnosis-results">
+        <h2>Possible Diagnoses</h2>
+        <ul id="diagnosis-list"></ul>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
