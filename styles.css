@@ -1,19 +1,25 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* General styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5;
+    background-color: #e9ebee;
     color: #1c1e21;
 }
 
-/* Header */
 header {
     background-color: #4267B2; /* Facebook blue */
     color: white;
     padding: 20px;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -23,40 +29,40 @@ header p {
     margin-top: 5px;
 }
 
-/* Symptom selection area */
+/* Symptom selection area - card layout */
 #symptom-selection {
     background-color: white;
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 500px;
-    border-radius: 8px;
+    margin: 30px auto;
+    padding: 30px;
+    max-width: 600px;
+    border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 #symptom-selection form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
 #symptom-selection label {
     display: flex;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 input[type="checkbox"] {
     margin-right: 10px;
-    transform: scale(1.2);
+    transform: scale(1.3);
 }
 
 button {
     background-color: #4267B2;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px 20px;
     border-radius: 6px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -65,20 +71,20 @@ button:hover {
     background-color: #365899;
 }
 
-/* Diagnosis and Disease Results */
+/* Diagnosis and Disease Results - styled as cards */
 #diagnosis-results, #all-diseases {
     background-color: white;
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 600px;
-    border-radius: 8px;
+    margin: 30px auto;
+    padding: 30px;
+    max-width: 700px;
+    border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     color: #1c1e21;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     border-bottom: 1px solid #dddfe2;
     padding-bottom: 10px;
 }
@@ -89,9 +95,10 @@ ul {
 }
 
 li {
-    padding: 10px;
+    padding: 12px;
     border-bottom: 1px solid #dddfe2;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    border-radius: 4px;
 }
 
 li:last-child {
@@ -100,13 +107,17 @@ li:last-child {
 
 /* Colors for different statuses */
 li.possible {
-    color: #28a745; /* Green for possible diagnoses */
-    font-weight: bold;
+    background-color: #d4edda;
+    color: #155724; /* Green for possible diagnoses */
 }
 
 li.ruled-out {
-    color: #ffc107; /* Yellow for ruled-out diagnoses */
-    font-weight: bold;
+    background-color: #fff3cd;
+    color: #856404; /* Yellow for ruled-out diagnoses */
+}
+
+li:hover {
+    background-color: #f5f6f7;
 }
 
 /* Footer */
