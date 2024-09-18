@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Diagnosis Filter</title>
+    <title>Medical Diagnosis Helper</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -13,7 +13,7 @@
         <h1>Medical Diagnosis Helper</h1>
         <p>Select your symptoms to get possible diagnoses:</p>
     </header>
-    
+
     <section id="symptom-selection">
         <form id="symptoms-form">
             <label><input type="checkbox" value="fever" class="symptom-checkbox"> Fever</label><br>
@@ -25,27 +25,16 @@
         </form>
     </section>
 
-    <section id="additional-filters">
-        <h3>Additional Filters</h3>
-        <label for="age">Age:</label>
-        <select id="age">
-            <option value="child">0-12</option>
-            <option value="teen">13-19</option>
-            <option value="adult">20-59</option>
-            <option value="senior">60+</option>
-        </select><br>
-
-        <label for="gender">Gender:</label>
-        <select id="gender">
-            <option value="any">Any</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select>
-    </section>
-
+    <!-- Diagnosis Results (Top Half) -->
     <section id="diagnosis-results">
         <h2>Possible Diagnoses</h2>
         <ul id="diagnosis-list"></ul>
+    </section>
+
+    <!-- All Diseases (Bottom Half) -->
+    <section id="all-diseases">
+        <h2>All Diseases</h2>
+        <ul id="disease-list"></ul>
     </section>
 
     <footer>
@@ -55,3 +44,4 @@
     <script src="app.js"></script>
 </body>
 </html>
+
