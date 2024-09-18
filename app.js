@@ -1,3 +1,4 @@
+// List of possible diagnoses with their associated symptoms
 const diagnoses = [
     { name: "Common Cold", symptoms: ["cough", "fatigue", "sore throat", "runny nose"] },
     { name: "Flu", symptoms: ["fever", "cough", "fatigue", "muscle aches"] },
@@ -9,62 +10,54 @@ const diagnoses = [
 ];
 
 // List of all diseases for the bottom section
-let allDiseases = diagnoses.map(diagnosis => diagnosis.name).sort();
+const allDiseases = diagnoses.map(diagnosis => diagnosis.name).sort();
 
+// Function to filter diagnoses based on selected symptoms
 function filterDiagnosis() {
-    const selectedSymptoms = Array.from(document.querySelectorAll('.symptom-checkbox:
+    // Get selected symptoms from checkboxes
+    const selectedSymptoms = Array.from(document.querySelectorAll('.symptom-checkbox:checked')).map(checkbox => checkbox.value);
 
-checked')).map(checkbox => checkbox.value);
-
-    // Filter and categorize diseases based on symptoms
+    // Arrays to store possible and ruled-out diagnoses
     const possibleDiagnoses = [];
     const ruledOutDiseases = [];
 
+    // Classify diagnoses based on selected symptoms
     diagnoses.forEach(diagnosis => {
-        const matchSymptoms = selectedSymptoms.filter(symptom => diagnosis.symptoms.includes(symptom));
-        if (matchSymptoms.length === selectedSymptoms.length) {
+        const matchingSymptoms = selectedSymptoms.filter(symptom => diagnosis.symptoms.includes(symptom));
+        if (matchingSymptoms.length === selectedSymptoms.length) {
             possibleDiagnoses.push(diagnosis.name);
         } else {
             ruledOutDiseases.push(diagnosis.name);
         }
     });
 
-    // Update the diagnosis list at the top
+    // Display possible diagnoses
     const diagnosisList = document.getElementById('diagnosis-list');
-    diagnosisList.innerHTML = '';
+    diagnosisList.innerHTML = ''; // Clear previous list
     possibleDiagnoses.sort().forEach(diagnosis => {
         const li = document.createElement('li');
         li.textContent = diagnosis;
         diagnosisList.appendChild(li);
     });
 
-    // Update the list of all diseases at the bottom
+    // Display all diseases with ruled-out ones at the bottom
     const diseaseList = document.getElementById('disease-list');
-    diseaseList.innerHTML = '';
-    
-    // Move possible diagnoses to the top (in green) and ruled out to the bottom (in yellow)
+    diseaseList.innerHTML = ''; // Clear previous list
+
     possibleDiagnoses.sort().forEach(disease => {
         const li = document.createElement('li');
         li.textContent = disease;
-        li.classList.add('possible');
+        li.style.color = 'green'; // Possible diagnoses in green
         diseaseList.appendChild(li);
     });
 
-    const remainingDiseases = allDiseases.filter(disease => !possibleDiagnoses.includes(disease));
     ruledOutDiseases.sort().forEach(disease => {
         const li = document.createElement('li');
         li.textContent = disease;
-        li.classList.add('ruled-out');
+        li.style.color = 'yellow'; // Ruled-out diagnoses in yellow
         diseaseList.appendChild(li);
     });
-    
-    remainingDiseases.sort().forEach(disease => {
-        if (!ruledOutDiseases.includes(disease)) {
-            const li = document.createElement('li');
-            li.textContent = disease;
-            diseaseList.appendChild(li);
-        }
-    });
 }
-                                                                
-                                                                  
+
+// Add event listener to the "Find Diagnosis" button
+document.getElementById('diagnosis-button').addEventListener('click', filterDiagnosis);
