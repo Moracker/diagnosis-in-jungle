@@ -1,71 +1,119 @@
-// List of possible diagnoses with their associated symptoms
-const diagnoses = [
-    { name: "Common Cold", symptoms: ["cough", "fatigue", "sore throat", "runny nose"] },
-    { name: "Flu", symptoms: ["fever", "cough", "fatigue", "muscle aches"] },
-    { name: "Migraine", symptoms: ["headache", "nausea", "light sensitivity", "blurred vision"] },
-    { name: "COVID-19", symptoms: ["fever", "cough", "fatigue", "headache", "loss of taste"] },
-    { name: "Food Poisoning", symptoms: ["nausea", "vomiting", "diarrhea", "abdominal pain"] },
-    { name: "Allergies", symptoms: ["runny nose", "sneezing", "itchy eyes", "rash"] },
-    { name: "Pneumonia", symptoms: ["fever", "chest pain", "cough", "shortness of breath"] },
-];
-
-// List of all diseases for the bottom section
-let allDiseases = diagnoses.map(diagnosis => diagnosis.name).sort();
-
-function filterDiagnosis() {
-    // Get selected symptoms from the checkboxes
-    const selectedSymptoms = Array.from(document.querySelectorAll('.symptom-checkbox:checked')).map(checkbox => checkbox.value);
-
-    const possibleDiagnoses = [];
-    const ruledOutDiseases = [];
-
-    // Classify diagnoses based on selected symptoms
-    diagnoses.forEach(diagnosis => {
-        const matchSymptoms = selectedSymptoms.filter(symptom => diagnosis.symptoms.includes(symptom));
-        if (matchSymptoms.length === selectedSymptoms.length) {
-            possibleDiagnoses.push(diagnosis.name);
-        } else {
-            ruledOutDiseases.push(diagnosis.name);
-        }
-    });
-
-    // Update the diagnosis list at the top
-    const diagnosisList = document.getElementById('diagnosis-list');
-    diagnosisList.innerHTML = ''; // Clear existing list
-
-    possibleDiagnoses.sort().forEach(diagnosis => {
-        const li = document.createElement('li');
-        li.textContent = diagnosis;
-        diagnosisList.appendChild(li);
-    });
-
-    // Update the list of all diseases at the bottom
-    const diseaseList = document.getElementById('disease-list');
-    diseaseList.innerHTML = ''; // Clear existing list
-
-    // Move possible diagnoses to the top (green) and ruled-out diseases to the bottom (yellow)
-    possibleDiagnoses.sort().forEach(disease => {
-        const li = document.createElement('li');
-        li.textContent = disease;
-        li.classList.add('possible');
-        diseaseList.appendChild(li);
-    });
-
-    ruledOutDiseases.sort().forEach(disease => {
-        const li = document.createElement('li');
-        li.textContent = disease;
-        li.classList.add('ruled-out');
-        diseaseList.appendChild(li);
-    });
-
-    // Add the remaining diseases that are not possible or ruled out
-    const remainingDiseases = allDiseases.filter(disease => !possibleDiagnoses.includes(disease) && !ruledOutDiseases.includes(disease));
-    remainingDiseases.forEach(disease => {
-        const li = document.createElement('li');
-        li.textContent = disease;
-        diseaseList.appendChild(li);
-    });
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #1c1e21;
 }
 
-// Event listener for the "Find Diagnosis" button
-document.getElementById('diagnosis-button').addEventListener('click', filterDiagnosis);
+/* Header */
+header {
+    background-color: #4267B2; /* Facebook blue */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header p {
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+/* Symptom selection area */
+#symptom-selection {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#symptom-selection form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#symptom-selection label {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+button {
+    background-color: #4267B2;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #365899;
+}
+
+/* Diagnosis and Disease Results */
+#diagnosis-results, #all-diseases {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 1.3rem;
+    color: #1c1e21;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #dddfe2;
+    padding-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    border-bottom: 1px solid #dddfe2;
+    font-size: 1rem;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+/* Colors for different statuses */
+li.possible {
+    color: #28a745; /* Green for possible diagnoses */
+    font-weight: bold;
+}
+
+li.ruled-out {
+    color: #ffc107; /* Yellow for ruled-out diagnoses */
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: #666;
+}
