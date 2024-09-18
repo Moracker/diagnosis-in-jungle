@@ -8,33 +8,8 @@ const diagnoses = [
     { name: "Pneumonia", symptoms: ["fever", "chest pain", "cough", "shortness of breath"] },
 ];
 
+// List of all diseases for the bottom section
+let allDiseases = diagnoses.map(diagnosis => diagnosis.name).sort();
+
 function filterDiagnosis() {
-    const selectedSymptoms = Array.from(document.querySelectorAll('.symptom-checkbox:checked'))
-                                   .map(cb => cb.value);
-    const selectedAge = document.getElementById('age').value;
-    const selectedGender = document.getElementById('gender').value;
-
-    const matchedDiagnoses = diagnoses.filter(diagnosis => {
-        if (selectedAge === 'child' && diagnosis.name === "Migraine") {
-            return false; 
-        }
-        if (selectedGender === 'male' && diagnosis.name === "Ovarian Cancer") {
-            return false; 
-        }
-
-        return selectedSymptoms.every(symptom => diagnosis.symptoms.includes(symptom));
-    });
-
-    const resultsList = document.getElementById('diagnosis-list');
-    resultsList.innerHTML = ''; 
-
-    if (matchedDiagnoses.length > 0) {
-        matchedDiagnoses.forEach(diagnosis => {
-            const listItem = document.createElement('li');
-            listItem.textContent = diagnosis.name;
-            resultsList.appendChild(listItem);
-        });
-    } else {
-        resultsList.innerHTML = '<li>No matching diagnoses found. Try adjusting your symptoms.</li>';
-    }
-}
+    const selectedSymptoms = Array.from(document.querySelectorAll('.symptom-checkbox:
