@@ -15,7 +15,7 @@ body {
 }
 
 header {
-    background-color: #4267B2; /* Facebook blue */
+    background-color: #595cff; /* Facebook blue */
     color: white;
     padding: 20px;
     text-align: center;
@@ -57,7 +57,7 @@ input[type="checkbox"] {
 }
 
 button {
-    background-color: #4267B2;
+    background-color: #595cff;
     color: white;
     border: none;
     padding: 12px 20px;
@@ -68,7 +68,7 @@ button {
 }
 
 button:hover {
-    background-color: #365899;
+    background-color: #595cff;
 }
 
 /* Diagnosis and Disease Results - styled as cards */
